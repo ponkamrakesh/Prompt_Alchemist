@@ -5,11 +5,6 @@ app = FastAPI()
 
 @app.get("/")
 def home():
-    return {"message": "Prompt Alchemist is alive 🔥"}
+    return {"message": "Clean deploy working 🚀"}
 
-@app.get("/predict")
-def predict(x: int):
-    return {"input": x, "output": x * 2}
-
-# Vercel handler
 handler = Mangum(app)
