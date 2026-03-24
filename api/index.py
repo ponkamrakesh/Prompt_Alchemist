@@ -1,40 +1,13 @@
-import logging
-from fastapi import FastAPI, HTTPException, status
+from fastapi import FastAPI
 from mangum import Mangum
-from pydantic import BaseModel
-from typing import Optional
 
-# Configure logging
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+app = FastAPI()
 
-app = FastAPI(title="Prompt Alchemist API", version="1.0.0")
-
-# Example Pydantic model for POST request
-class ItemCreate(BaseModel):
-    name: str
-    description: Optional[str] = None
-    price: float
-
-# ---------- Health check with try-except ----------
-@app.get("/health")
-async def health_check():
-    try:
-        # Simulate a database check or other operation
-        # For demonstration, we just return OK
-        return {"status": "ok"}
-    except Exception as e:
-        logger.error(f"Health check failed: {e}")
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail="Service unavailable"
-        )
-
-# ---------- Root endpoint ----------
 @app.get("/")
-async def root():
-    try:
-        return {"message": "Hello from Prompt Alchemist!"}
+def root():
+    return {"message": "Hello from Prompt Alchemist"}
+
+handler = Mangum(app)        return {"message": "Hello from Prompt Alchemist!"}
     except Exception as e:
         logger.error(f"Root endpoint error: {e}")
         raise HTTPException(
