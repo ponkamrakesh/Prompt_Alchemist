@@ -4,16 +4,16 @@ from mangum import Mangum
 app = FastAPI()
 
 @app.get("/")
-def home():
-    return {"message": "Prompt Alchemist is alive 🚀"}
+async def home():
+    return {"message": "Working 🚀"}
 
 @app.get("/health")
-def health():
+async def health():
     return {"status": "ok"}
 
 @app.get("/predict")
-def predict(x: int):
+async def predict(x: int = 1):
     return {"input": x, "output": x * 2}
 
-# REQUIRED for Vercel
+# IMPORTANT: explicit handler name
 handler = Mangum(app)
