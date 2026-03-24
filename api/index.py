@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from mangum import Mangum
+from fastapi.responses import JSONResponse
 
 app = FastAPI()
 
@@ -15,5 +15,7 @@ async def health():
 async def predict(x: int = 1):
     return {"input": x, "output": x * 2}
 
-# IMPORTANT: explicit handler name
-handler = Mangum(app)
+
+# 👇 THIS is the key part (no Mangum)
+def handler(request):
+    return JSONResponse({"message": "Vercel function is alive 🚀"})
