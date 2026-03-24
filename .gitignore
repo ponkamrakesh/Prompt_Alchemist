@@ -1,4 +1,19 @@
+# Python
 __pycache__/
-*.pyc
-.vercel/
+*.py[cod]
+*.so
+.Python
+env/
+venv/
 .env
+.venv
+
+# Vercel
+.vercel
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
