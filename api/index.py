@@ -1,4 +1,7 @@
-from mangum import Mangum
-from app.main import app
+from fastapi import FastAPI
 
-handler = Mangum(app)
+app = FastAPI()
+
+@app.get("/")
+def home():
+    return {"message": "Prompt Alchemist API 🔥"}
